@@ -1,0 +1,4 @@
+__pycache__
+*.zip
+c8games/*
+.DS_Store
