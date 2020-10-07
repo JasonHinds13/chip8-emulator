@@ -1,3 +1,4 @@
+import sys
 import pygame
 from pygame.locals import *
 
@@ -12,15 +13,20 @@ HEIGHT = 32
 SCREEN_WIDTH = 64 * SCALE
 SCREEN_HEIGHT = 32 * SCALE
 
+gameFile = "c8games/INVADERS"
+
+if len(sys.argv) == 2:
+	gameFile = sys.argv[1]
+
 clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Chip-8 Emulator - {}".format("INVADERS"))
+pygame.display.set_caption("Chip-8 Emulator - {}".format(gameFile))
 
 running = True
 
 chip8 = Chip8()
-chip8.loadgame()
+chip8.loadgame(gameFile)
 
 while running:
 
