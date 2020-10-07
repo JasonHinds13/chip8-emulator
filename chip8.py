@@ -60,7 +60,7 @@ class Chip8:
 		""" Check if the draw flag, VF, is set"""
 		return self.drawFlag
 
-	def setKey(index, val):
+	def setKey(self, index, val):
 		self.key[index] = val
 
 	def cycle(self):
