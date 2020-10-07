@@ -6,12 +6,16 @@ from chip8 import Chip8
 pygame.init()
 
 SCALE = 10
-WIDTH = 64 * SCALE
-HEIGHT = 32 * SCALE
+WIDTH = 64
+HEIGHT = 32
+
+SCREEN_WIDTH = 64 * SCALE
+SCREEN_HEIGHT = 32 * SCALE
 
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Chip-8 Emulator - {}".format("INVADERS"))
 
 running = True
 
@@ -25,6 +29,8 @@ while running:
 			running = False
 
 		if event.type == pygame.KEYDOWN:
+			if event.key == K_ESCAPE:
+				running = False
 			if event.key == K_x:
 				chip8.setKey(0,1)
 			if event.key == K_1:
@@ -95,10 +101,15 @@ while running:
 	# execute one cycle
 	chip8.cycle()
 
-	# if chip8.drawFlagSet(): draw()
-	# chip8.setKeys()
+	# Draw to screen
+	if chip8.drawFlagSet():
+		for y in range(32):
+			for x in range(64):
+				if chip8.pixels[x + (y*64)] == 0:
+					pygame.draw.rect(screen, (0,0,0), (x*SCALE,y*SCALE,SCALE,SCALE), 0)
+				else:
+					pygame.draw.rect(screen, (255,255,255), (x*SCALE,y*SCALE,SCALE,SCALE), 0)
 
-	screen.fill((0,0,0))
 	pygame.display.flip()
 
 	clock.tick(60)
