@@ -44,7 +44,7 @@ class Chip8:
 		for i in range(80):
 			self.memory[i] = self.font[i]
 
-	def loadgame(self, filename="c8games/INVADERS"):
+	def loadgame(self, filename):
 		""" Load contents of game file into memory"""
 		with open(filename, "rb") as f:
 			byte = f.read(1)
