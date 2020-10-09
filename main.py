@@ -13,7 +13,7 @@ HEIGHT = 32
 SCREEN_WIDTH = 64 * SCALE
 SCREEN_HEIGHT = 32 * SCALE
 
-gameFile = "c8games/INVADERS"
+gameFile = "c8games/MISSILE"
 
 if len(sys.argv) == 2:
 	gameFile = sys.argv[1]
@@ -115,6 +115,8 @@ while running:
 					pygame.draw.rect(screen, (0,0,0), (x*SCALE,y*SCALE,SCALE,SCALE), 0)
 				else:
 					pygame.draw.rect(screen, (255,255,255), (x*SCALE,y*SCALE,SCALE,SCALE), 0)
+
+		chip8.setDrawFlag(False)
 
 	pygame.display.flip()
 
